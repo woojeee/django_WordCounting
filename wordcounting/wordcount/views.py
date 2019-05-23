@@ -9,6 +9,7 @@ def home(request):
 
 def result(request):
     text = request.GET['fulltext']
+    textcount = len(text)
     words = text.split()
     words_set = set(words)
     total_word_count = len(words_set)
@@ -18,6 +19,7 @@ def result(request):
         word_count_dic[word] = words.count(word)
 
     return render(request, 'result.html', {
+        'total_text_count' : textcount,
         'total_word_count': total_word_count,
         'text': text,
         'word_count_dic': word_count_dic,
